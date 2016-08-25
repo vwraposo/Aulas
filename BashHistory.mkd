@@ -1,0 +1,44 @@
+Aula sobre manipulacao de historico no BASH:
+
+    Comando:
+        history - Mostra o historico dos comandos usados
+        history -c - Limpa o historico
+
+    History Recall:
+        !! - Previous command
+        !n - Previous nth command
+
+    Parameters Recall (parameters are indexed from 1, 0 is the command):
+        !* - All the arguments of the previous command
+        !:m - The mth argument of the previous command
+
+    Advanced Recall:
+        !?<search> - Previous command with the word '<search>' in it
+        !<command> - Previous <command>
+
+    From here on any one of '!!', '!n', '!<command>', or '!?<search>' will be refered to as '<history ref>'
+
+    Advanced Parameter Recall:
+        <history ref>:<n/^/$/*> - Nth, first, last, all respectively argument of the history ref
+
+    Basic Replace:
+        ^foo^bar - Replace first ocurrence of 'foo' with 'bar' in previous command
+    
+    Advanced Replace:
+        <history ref>:s/foo/bar - Replace first ocurrence of 'foo' with 'bar' in history ref
+        <history ref>:gs/foo/bar - Replace all ocurrence of 'foo' with 'bar' in histoty ref 
+    
+    Modifires (These  are filters to a substitution), a substitution is any of the above ways to recall a previous command/parameter:
+        <substitution>:t - The 'tail' of the string, ie., the filename in a path
+        <substitution>:h - The 'head' of the string ie., the path minus the filename 
+        <substitution>:q - Surround the substitution with single quotes
+        <substitution>:x - Split the substitution on spaces/newlines and then surround them with single quotes 
+        <subtitution>:p - Print the command (without running it) and put it in the history
+
+    Settings:
+        HISTSIZE (number) - How many entries to store (default to 500)
+        HISTCONTROL (string) - Behaviour of the history
+                ignoredups - Dont put the command in your history if it's the same as the previous command 
+                ignorespace - Don't put the command in your history if there is leading whitespace 
+                ignoreboth - Both previous settings    
+        HISTIGNORE (string) - Ignore commands in string. Example: HISTIGNORE="clear:history"
