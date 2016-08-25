@@ -1,0 +1,155 @@
+Aula sobre Swift:
+
+    Basic Types:
+        'let' - To declare a constant
+        'var' - To declares a variable
+        
+        Every constant/variable has a type, but you dont need to write it explicitly, 
+        the compiler infer the type. But if you want to specify the type write it 
+        after the variable name, separated by a colon.
+
+        Examples:
+            var myVariable = 2.37
+            let explicitDouble: Double = 70
+         
+        Obs:
+            In Xcode if you press Option-click (alt) the name of a contant/variable
+            you can see its type
+        
+        '/(variable)' - String interpolation, convert the value of the variable to
+                        String (= String (variable))
+        
+        Optionals - variables that can be a value or nil (no value)
+            Ex: let optionalInt: Int? = 9
+
+        Arrays -
+            To create a full array: 
+            Ex: var ratingList = ["Poor", "Fine", "Good", "Excellent"]
+                ratingList[1] = "OK"
+
+            To create an empty array use initializer syntax:
+                let emptyArray = [String]()
+        
+        Comment - // or /* */
+    
+    ControlFlow:
+        'if' and 'else' -
+                let number = 23
+                if number < 10 {
+                    print("The number is small")
+                } else if number > 100 {
+                    print("The number is pretty big")
+                } else {
+                    print("The number is between 10 and 100")
+                }
+
+        E possivel usar 'where' no if, para aumentar o numero de condicoes:
+                 var optionalHello: String? = "Hello"
+                if let hello = optionalHello where hello.hasPrefix("H"), let name = optionalName {
+                greeting = "\(hello), \(name)"
+                }
+        
+        'for' -
+                let individualScores = [75, 43, 103, 87, 12]
+                var teamScore = 0
+                for score in individualScores {
+                    if score > 50 {
+                        teamScore += 3
+                    } else {
+                        teamScore += 1
+                    }
+                }
+                print(teamScore)
+
+        'switch' -
+                let vegetable = "red pepper"
+                switch vegetable {
+                    case "celery":
+                        let vegetableComment = "Add some raisins and make ants on a log."
+                    case "cucumber", "watercress":
+                        let vegetableComment = "That would make a good tea sandwich."
+                    case let x where x.hasSuffix("pepper"):
+                        let vegetableComment = "Is it a spicy \(x)?"
+                    default:
+                        let vegetableComment = "Everything tastes good in soup."
+                }
+        Ranges - 
+                '..<' - half open operator, range that does not include the upper number
+                '...' - closed range operator, range that include both values 
+                '_' - underscore is used as a wildcard, when you don't need to know which iteration of the loop is currently executing
+
+    Functions:
+            'func' - to declare a function 
+            parameters - "name: Type"
+            return type - " -> Type"
+                
+                func greet(name: String, day: String) -> String {
+                       return "Hello \(name), today is \(day)."
+                }       
+        
+            You need to pass the value and the name of the parameter, only the first you can pass  without its name
+            
+    Classes:
+            'class' - to define a class
+            'init' - initializer
+            'NameOftheClass (first: "1", second: "2" ...)' - to inicialize an object
+            'Object.method ("1", second: "2" ...)' - to use a method of a class
+            'self' 
+            
+            'class Name: Parent' - to create a subclass
+            'override func' - to override a function of the superclass
+            
+            failable initializer - init?, can return nil
+            designated initializer
+            convenience initializer
+            required initializer 
+            Type casting - 
+                    as? - returns an optional value of the type you are trying to downcast to.
+                    as! - attempts the downcast and force-unwraps the result as a single compound action. 
+
+    Enumeration and Structures:
+                enum Rank: Int {
+                    case Ace = 1
+                    case Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
+                    case Jack, Queen, King
+                    func simpleDescription() -> String {
+                        switch self {
+                            case .Ace:
+                                return "ace"
+                            case .Jack:
+                                return "jack"
+                            case .Queen:
+                                return "queen"
+                            case .King:
+                                return "king"
+                            default:
+                                return String(self.rawValue)
+                        }
+                    }
+                }
+                let ace = Rank.Ace
+                let aceRawValue = ace.rawValue        
+
+
+                struct Card {
+                    var rank: Rank
+                    var suit: Suit
+                    func simpleDescription() -> String {
+                        return "The \(rank.simpleDescription()) of \(suit.simpleDescription())"
+                    }
+                }
+                let threeOfSpades = Card(rank: .Three, suit: .Spades)
+                let threeOfSpadesDescription = threeOfSpades.simpleDescription()
+
+    Protocols:
+            Como se fosse uma API
+
+                protocol ExampleProtocol {
+                    var simpleDescription: String { get }
+                    func adjust()
+                } 
+            
+            Varias classes podem seguir o mesmo protocolo
+            E possivel fazer um vetor de Protocolos
+
+    ` 
